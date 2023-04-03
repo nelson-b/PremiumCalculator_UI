@@ -75,7 +75,7 @@
             },
             "development": {
               "browserTarget": "Angular13FormValidation:build:development",
-              "proxyConfig": "proxy.conf.json"
+              "proxyConfig": "localproxy.json"
             }
           },
           "defaultConfiguration": "development"
