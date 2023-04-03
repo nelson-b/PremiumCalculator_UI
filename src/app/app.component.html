@@ -1,0 +1,93 @@
+<div class="register-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Name</label>
+      <input
+        type="text"
+        formControlName="fullname"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['fullname'].errors }"
+      />
+      <div *ngIf="submitted && f['fullname'].errors" class="invalid-feedback">
+        <div *ngIf="f['fullname'].errors['required']">Name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Age</label>
+      <input
+        type="number"
+        formControlName="age"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['age'].errors }"
+      />
+      <div *ngIf="submitted && f['age'].errors" class="invalid-feedback">
+        <div *ngIf="f['age'].errors['required']">Age is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Date of Birth (limited to Max of 70 years)</label>
+      <input
+        type="date" min="1947-04-03" max="2023-04-03" 
+        formControlName="dob"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['dob'].errors }"
+      />
+      <div *ngIf="submitted && f['dob'].errors" class="invalid-feedback">
+        <div *ngIf="f['dob'].errors['required']">Date Of Birth is required</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>Occupation</label>
+      <select
+        formControlName="occupation"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['occupation'].errors }"
+      >
+      <option disabled>Select</option>
+      <option *ngFor = "let occupation in occupationList">{{occupation.Name}}</option>
+    </select>
+      <div
+        *ngIf="submitted && f['occupation'].errors"
+        class="invalid-feedback">
+        <div *ngIf="f['occupation'].errors['required']">
+          Occupation is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Sum Insured</label>
+      <input
+        type="number"
+        formControlName="sumInsured"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['sumInsured'].errors }"
+      />
+      <div
+        *ngIf="submitted && f['sumInsured'].errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f['sumInsured'].errors['required']">
+          Sum Insured is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Calculate</button>
+      <button
+        type="button"
+        (click)="onReset()"
+        class="btn btn-warning float-right"
+      >
+        Reset
+      </button>
+    </div>
+    <div class="form-group">
+      <label>Premium: <span>{{resPremium}}</span></label>
+    </div>
+  </form>
+</div>
